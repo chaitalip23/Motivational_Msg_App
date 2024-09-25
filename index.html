@@ -1,0 +1,101 @@
+<html>
+    <head>
+        <title>Motivational Msg App by Chaitali</title>
+        <style>
+            body {
+                background-color: #fffbf3; /* Soft beige background */
+                margin: 0;
+                padding: 0;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                color: #333; /* Dark gray for text */
+            }
+
+            center {
+                background-color: #ffe5d9; /* Warm coral-like container background */
+                padding: 40px;
+                border-radius: 20px;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow to lift the container */
+                text-align: center;
+                width: 600px;
+                max-width: 100%; /* Responsive on smaller screens */
+		border: 2px solid black;
+
+            }
+
+            h1 {
+                font-size: 2.5rem;
+                background-color: #ff6f61; /* Unique coral shade for the header */
+                color: black;
+                padding: 15px;
+                border-radius: 10px;
+                margin-bottom: 30px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            h2 {
+                background-color: #fff1e6; /* Light peach for message background */
+                padding: 20px;
+                margin: 20px 0;
+                border-radius: 10px;
+                font-size: 1.5rem;
+                color: #333;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+            }
+
+            form {
+                margin-bottom: 20px;
+		
+            }
+
+            input[type="submit"] {
+                padding: 15px 30px;
+                background-color: #ffb677; /* Warm orange for the button */
+                color: black;
+                border: none;
+                border-radius: 10px;
+                font-size: 1.5rem;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Button shadow */
+
+            }
+
+            input[type="submit"]:hover {
+                background-color: #f08080; /* Darker coral on hover */
+            }
+        </style>
+    </head>
+
+    <body>
+        <center>
+            <h1>Motivational Msg App</h1>
+            
+            <form onsubmit="gm()">
+                <input type="submit" value="Get Messages" />
+            </form>
+            
+            <h2 id="msg"></h2>    
+            <h2 id="aut"></h2>    
+
+            <script>
+                function gm() {
+                    event.preventDefault();
+                    let msg = document.getElementById("msg");
+                    let aut = document.getElementById("aut");
+                    let url = "https://quotes-api-self.vercel.app/quote";
+                    fetch(url)
+                        .then(res => res.json())
+                        .then(data => {
+                            msg.innerHTML = data.quote;
+                            aut.innerHTML = "— " + data.author;
+                        })
+                        .catch(err => alert("Issue: " + err));
+                }
+            </script>
+        </center>
+    </body>
+</html>
